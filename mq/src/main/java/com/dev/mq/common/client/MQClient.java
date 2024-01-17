@@ -1,5 +1,6 @@
 package com.dev.mq.common.client;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,11 +19,11 @@ public class MQClient {
 
 	try {
 
-	    if (exchange.isEmpty() || "".equals(exchange)) {
+	    if (StringUtils.isEmpty(exchange)) {
 		throw new NoSuchMethodException("[ERROR] exchange is mandatory. ");
 	    }
 
-	    if (routingKey.isEmpty() || "".equals(routingKey)) {
+	    if (StringUtils.isEmpty(routingKey)) {
 		throw new NoSuchMethodException("[ERROR] routing-key is mandatory. ");
 	    }
 

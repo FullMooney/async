@@ -15,7 +15,7 @@ public class MQTestListener {
     @RabbitListener(queues = { "q.domain.001.dev" }, group = "g.domain.001.dev")
     public void listenMsg(final EventVO event) {
 	log.debug("", event.toString());
-	// DLQ 테스트를 위해 일부러 Exception throw
+	// DLQ 테스트를 위해 일부러 아무 Exception throw
 	throw new ReadTimeoutException("DLQ를 테스트하자");
     }
 

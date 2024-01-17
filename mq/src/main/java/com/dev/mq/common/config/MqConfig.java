@@ -94,7 +94,8 @@ public class MqConfig {
 	MessageRecoverer messageRecoverer = new RejectAndDontRequeueRecoverer();
 	factory.setAdviceChain(
 		RetryInterceptorBuilder.stateless().maxAttempts(maxAttempts).backOffOptions(3000, 2, 10000)
-			.recoverer(messageRecoverer).build());
+			.recoverer(messageRecoverer).build()); // 3초 간격 2번 10초까지 최대 maxAttempts(3회)까지 retry 이후 exhausted
+							       // 로 전환
 	factory.setErrorHandler(errorHandler());
 	return factory;
     }
